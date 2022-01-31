@@ -1,0 +1,57 @@
+public class BankAccount {
+    private int account_number;
+    private int account_balance;
+    //declaring private allows us to control how users access these
+    //variables as they don't have access from the main method
+
+    public BankAccount(int account_number, int account_balance) {
+        this.account_number = account_number;
+        this.account_balance = account_balance;
+        System.out.println("You created account: " +
+                this.account_number + ". Your balance is " +
+                this.account_balance + ".");
+    }
+    public  void deposit(int addMoney) {
+        if (addMoney < 0) {
+            System.out.println("You cannot deposit a " +
+                    "negative amount.");
+        } else {
+            this.account_balance = this.account_balance + addMoney;
+            System.out.println("£" + addMoney + " " +
+                    "deposited into account " +
+                    this.account_number + ".");
+        }
+    }
+    public  void withdraw(int removeMoney) {
+        if (removeMoney > this.account_balance) {
+            System.out.println("You cannot remove more" +
+            " than what is in your account");
+        } else {
+            this.account_balance = this.account_balance - removeMoney;
+            System.out.println("£" + removeMoney + " " +
+                    "has been withdrawn from account " +
+                    this.account_number + ".");
+
+            class Main {
+                public void main (String[] args ) {
+                    BankAccount myBankAccount = new BankAccount(4141,
+                            100);
+                    // System.out.println(myBankAccount.BankAccount); this would not work
+                    // as bankaccount is private and can't be access via main method
+
+                    //we can access ban accound indirectly by calling methods specifically
+                    //this will throw an error as we can't deposit negative amounts
+                    myBankAccount.deposit(-60);
+
+                    //as there is only 100 in the account, we can't withdraw this amount
+                    myBankAccount.withdraw(150);
+
+                    myBankAccount.deposit(100);
+
+                    myBankAccount.withdraw(200);
+
+                }
+            }
+        }
+    }
+}
